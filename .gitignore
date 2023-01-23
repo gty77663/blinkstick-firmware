@@ -1,0 +1,24 @@
+# KiCad files
+pcb/BlinkStickAdvanced-backups/
+pcd/#auto_saved_files#
+
+# Build Files
+BlinkStickAdvanced/Debug/
+BlinkStickAdvanced/Release/
+BlinkStickAdvanced/*.o
+BlinkStickAdvanced/*.hex
+BlinkStickAdvanced/*.elf
+
+BlinkStickAdvanced/serial.txt
+
+API/
+
+# Microchip Studio files
+.vs/
+
+# Git files
+.git/
+
+# Backup files
+*.bak
+BlinkStickAdvanced/*.bak
