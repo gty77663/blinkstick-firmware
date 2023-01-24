@@ -1,6 +1,8 @@
 # KiCad files
+pcb/*
+!pcb/*/
+!pcb/*.*
 pcb/BlinkStickAdvanced-backups/
-pcd/#auto_saved_files#
 
 # Build Files
 BlinkStickAdvanced/Debug/
