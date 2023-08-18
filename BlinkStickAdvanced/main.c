@@ -1,6 +1,6 @@
 /* Name: main.c
  * Project: BlinkStickAdvanced
- * Author: Arvydas Juskevicius, Foxdogface
+ * Author: Arvydas Juskevicius, gty77663
  * Creation Date: 2022-12-21
  * Tabsize: 4
  * Copyright: (c) 2013 by Agile Innovative Ltd
@@ -58,7 +58,7 @@ const PROGMEM uint16_t ledDataCount[] = {MIN_LED_FRAME, MIN_LED_FRAME * 2, MIN_L
 		1: LED Data [R, G, B]
 		2: Name [Binary Data 0..32]
 		3: Data [Binary Data 0..32]
-		4: Mode set [MODE]: 0 - RGB LED Strip, 1 - Inverse RGB LED Strip, 2 - WS2812
+		4: Mode set [MODE]: 0 - RGB LED Strip, 1 - Inverse RGB LED Strip, 2 - WS2812, 3 - Advanced (WS2812 and RGB)
 		5: LED Data [CHANNEL, INDEX, R, G, B]
 		6: LED Frame [Channel, [G, R, B][0..7]]
 		7: LED Frame [Channel, [G, R, B][0..15]]
@@ -161,9 +161,29 @@ uchar channelToPin(uchar ch) {
 
 void setRGBPWM(uint8_t r, uint8_t g, uint8_t b)
 {
-	R_PWM = r;   
-	G_PWM = g;   
-	B_PWM = b;   
+	/* Turn of timer's pin if the OCRxn equals 0 to prevent the glitch
+	* of non-zero duty cycle. 
+	*/
+	if (r == 0) TCCR1A &= ~(_BV(COM1B1));
+	else 
+	{	
+		TCCR1A |= _BV(COM1B1);
+		R_PWM = r;	
+	}
+	
+	if (g == 0) TCCR2 &= ~(_BV(COM21));	
+	else 
+	{
+		TCCR2 |= _BV(COM21);	
+		G_PWM = g;
+	}
+	
+	if (b == 0) TCCR1A &= ~(_BV(COM1A1));
+	else 
+	{
+		TCCR1A |= _BV(COM1A1);
+		B_PWM = b;
+	}
 }
 
 /* ------------------------------------------------------------------------- */
@@ -281,7 +301,7 @@ uchar usbFunctionWrite(uchar *data, uchar len)
 			rgb_led[2] = data[3];
 
 			//Set PWM values
-			setRGBPWM(255 - rgb_led[1], 255 - rgb_led[0], 255 - rgb_led[2]);
+			setRGBPWM(rgb_led[1], rgb_led[0], rgb_led[2]);
 		}
 		else if (mode == MODE_RGB_INVERSE)
 		{
@@ -290,7 +310,7 @@ uchar usbFunctionWrite(uchar *data, uchar len)
 			rgb_led[2] = data[3];
 
 			//Set PWM values
-			setRGBPWM(rgb_led[1], rgb_led[0], rgb_led[2]);
+			setRGBPWM(255 - rgb_led[1], 255 - rgb_led[0], 255 - rgb_led[2]);
 		}
 		else if (mode == MODE_WS2812)
 		{
@@ -369,7 +389,7 @@ uchar usbFunctionWrite(uchar *data, uchar len)
 	}
 	else if (reportId >= 6 && reportId <= 9) // Serial data for LEDs
 	{
-		if (mode != MODE_WS2812)
+		if (mode != MODE_WS2812 || mode != MODE_ADVANCED)
 		{
 			return 1;
 		}
@@ -707,6 +727,8 @@ void EnablePWM()
 	/* Fast PWM 8-bit Timer1 prescaler 8 */
 	TCCR1A |= _BV(COM1A1) | _BV(COM1B1) | _BV(WGM10);
 	TCCR1B |= _BV(WGM12) | _BV(CS11);
+	
+	DDRB |= _BV(PINB1) | _BV(PINB2) | _BV(PINB3);
 }
 
 

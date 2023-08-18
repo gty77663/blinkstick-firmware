@@ -209,7 +209,7 @@ section at the end of this file).
  * you use obdev's free shared VID/PID pair. Be sure to read the rules in
  * USBID-License.txt!
  */
-#define USB_CFG_DEVICE_VERSION  0x00, 0x02
+#define USB_CFG_DEVICE_VERSION  0x00, 0x04
 /* Version number of the device: Minor number first, then major number.
  */
 #define USB_CFG_VENDOR_NAME     'A', 'g', 'i', 'l', 'e', ' ', 'I', 'n', 'n', 'o', 'v', 'a', 't', 'i', 'v', 'e', ' ', 'L', 't', 'd' 
