@@ -1,0 +1,45 @@
+# MTL-File belongs to model: BlinkStickAdvanced.obj
+# Don't change this file name - original file name: BlinkStickAdvanced.mtl
+# MTL-File and OBJ-Model shall be in the same directory
+
+# 13 Colors
+
+newmtl Color0
+Kd 0.824000 0.820000 0.781000
+
+newmtl Color1
+Kd 0.148000 0.145000 0.145000
+
+newmtl Color2
+Kd 0.691000 0.664000 0.598000
+
+newmtl Color3
+Kd 0.859000 0.738000 0.496000
+
+newmtl Color4
+Kd 0.340000 0.680000 0.445000
+
+newmtl Color5
+Kd 0.823529 0.819608 0.780392
+
+newmtl Color6
+Kd 0.149020 0.145098 0.145098
+
+newmtl Color7
+Kd 0.858824 0.737255 0.494118
+
+newmtl Color8
+Kd 0.895000 0.891000 0.813000
+
+newmtl Color9
+Kd 0.082000 0.086000 0.094000
+
+newmtl Color10
+Kd 0.379000 0.270000 0.215000
+
+newmtl Color11
+Kd 0.507540 0.507540 0.507540
+
+newmtl Color12
+Kd 0.430000 0.450000 0.300000
+
