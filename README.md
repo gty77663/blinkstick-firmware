@@ -1,7 +1,6 @@
 # BlinkStick Firmware
 
-BlinkStick is a DIY open source USB RGB LED Controller. It's small, the 
-size of a credit card and supports both popular types of RGB LEDs - generic 12V ones and addressable WS2812. 
+BlinkStick is a DIY open source USB RGB LED Controller. Original idea is to create a little & handy RGB stick, and make its code and protocol opensource, so everybody can enjoy playing with RGB LEDs using the programming launguage or application of your choise. It's small, the biggest model is the size of a credit card and supports both popular types of RGB LEDs - generic 12V ones and addressable WS2812. 
 
 You can find more details about it here:
 
